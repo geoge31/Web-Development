@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+
+<html>
+
+  <head>
+    <script src="http://www.openlayers.org/api/OpenLayers.js"></script>
+    <script src="js/petform.js" defer></script>
+    <title>Pet Form</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/petform.css">
+    <meta charset="UTF-8">
+    <meta name="viewport">
+  </head>
+
+  <body>
+
+    <!-- Header -->
+    <header>
+      <img id="profile" src="https://previews.123rf.com/images/qoolio/qoolio1602/qoolio160200063/52883831-pets-home-pet-logo-minimal-concept-vector-for-pet-shop-or-hotel.jpg" alt="my Profile Image">
+      <h1>Official Pet Form</h1>
+    </header>
+
+    
+    <!-- Navigation bar --> 
+    <ul id="myNavbar">
+      <li><a href="#home"> Home </a></li>
+      <li><a href="https://www.nbcnews.com/animal-news" target="_blank">News</a></li>
+      <li><a href="https://www.saveagreekstray.org/el/adoptions/find-pet/" target="_blank"> Adoption </a></li>
+      <li><a href="https://www.saveagreekstray.org/el/about/shelter" target="_blank"> Shelters </a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#signup" style="margin-left: 50vw; font-weight: bold;" onclick="document.getElementById('id01').style.display='block'">Sign Up</a></li>
+      <li><a href="#login" style="font-weight: bold;" onclick="document.getElementById('id02').style.display='block'" >Log-in</a></li>
+      <li><a href="#admin" style="font-weight: bold;" onclick="document.getElementById('id03').style.display='block'">Admin</a></li>
+    </ul>
+
+
+    <!-- Sign Up Form -->
+    <div id="id01" class="modal">
+
+        <!-- (x) button -->
+        <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+
+        <!-- form -->
+        <form action="SuccessSignUp" method="get" class="modal-content">
+
+            <div class="container">
+
+                <!-- header of form -->
+                <h2>Sign-up Form:</h2>
+                <p>Please fill up the fields to complete registration!</p><br>
+
+
+                <!-- username -->
+                <label for="username">*Username</label>
+                <input type="text" id="username" onchange="check_Username(event)" pattern="[A-Za-z][A-Za-z0-9]{7,}" placeholder="gioGer3108" required>
+                    <div id="usernameExists"></div><br>
+
+                <!-- Email -->
+                <label for="email">*Email</label>
+                <input type="text" id="email" onchange="check_Email(event)" placeholder="ggpapad1@gmail.com" required>
+                    <div id="emailExists"></div><br>
+
+                <!-- Password 1 -->
+                <label for="password">*Password &nbsp; (Hint: Keywords <b>dog, cat, skulos, gata</b></label>
+                <label for="password" style="color: red; font-weight: bolder;">forbidden!</label>
+                <label>)</label>
+                <input type="password" id="password1" placeholder="pDs12!e#Zq"  pattern="(?=.*\d)(?=.*[a-z])(?=.*[a-z]).{8,15}$" required>
+
+                <!-- Print Message for: 1.  Forbidden Sequences 2.  Password Strength -->
+                <div id="prt-message"></div><br>
+
+
+                <!-- Password 2 -->
+                <label for="password">*Password Verification</label>
+                  <input type="password" 
+                    id="password2"  placeholder="pDs12!e#Pq" pattern="(?=.*\d)(?=.*[a-z])(?=.*[a-z]).{8,15}" required>
+
+                <!-- Print Message 2 -->
+                <div id="prt-message2"></div><br>
+
+
+                <!-- button to show or hide passwords -->
+                <button type="button" id="showPass">Show Password</button><br>
+                <!-- button to check if passwords are equal -->
+                <button type="button" id="equalPass" name="equalPass">Check Passwords</button> 
+
+
+                <!-- Print Message 3 -->
+                <div id="prt-message3"></div><br>
+
+
+                <!-- First Name -->
+                <label for="firstname">*First Name</label>
+                <input type="text" id="firstname" pattern="[a-zA-Z]{3,30}" placeholder="Giorgos" required><br>
+
+
+                <!-- Last Name -->
+                <label for="lastname">*Last Name</label>
+                <input type="text" id="lastname" pattern="[A-Za-z]{3,30}" placeholder="Papadopoulos" required><br>
+
+
+                <!-- Country -->
+                <label for="country">*Country</label> <br>
+                  <select id="country" name="country" required> 
+                        <option value="Greece">Greece</option>
+                        <option value="Afganistan">Afghanistan</option>
+                        <option value="Albania">Albania</option>
+                        <option value="Algeria">Algeria</option>
+                        <option value="American Samoa">American Samoa</option>
+                        <option value="Andorra">Andorra</option>
+                        <option value="Angola">Angola</option>
+                        <option value="Anguilla">Anguilla</option>
+                        <option value="Antigua & Barbuda">Antigua & Barbuda</option>
+                        <option value="Argentina">Argentina</option>
+                        <option value="Armenia">Armenia</option>
+                        <option value="Aruba">Aruba</option>
+                        <option value="Australia">Australia</option>
+                        <option value="Austria">Austria</option>
+                        <option value="Azerbaijan">Azerbaijan</option>
+                        <option value="Bahamas">Bahamas</option>
+                        <option value="Bahrain">Bahrain</option>
+                        <option value="Bangladesh">Bangladesh</option>
+                        <option value="Barbados">Barbados</option>
+                        <option value="Belarus">Belarus</option>
+                        <option value="Belgium">Belgium</option>
+                        <option value="Belize">Belize</option>
+                        <option value="Benin">Benin</option>
+                        <option value="Bermuda">Bermuda</option>
+                        <option value="Bhutan">Bhutan</option>
+                        <option value="Bolivia">Bolivia</option>
+                        <option value="Bonaire">Bonaire</option>
+                        <option value="Bosnia & Herzegovina">Bosnia & Herzegovina</option>
+                        <option value="Botswana">Botswana</option>
+                        <option value="Brazil">Brazil</option>
+                        <option value="British Indian Ocean Ter">British Indian Ocean Ter</option>
+                        <option value="Brunei">Brunei</option>
+                        <option value="Bulgaria">Bulgaria</option>
+                        <option value="Burkina Faso">Burkina Faso</option>
+                        <option value="Burundi">Burundi</option>
+                        <option value="Cambodia">Cambodia</option>
+                        <option value="Cameroon">Cameroon</option>
+                        <option value="Canada">Canada</option>
+                        <option value="Canary Islands">Canary Islands</option>
+                        <option value="Cape Verde">Cape Verde</option>
+                        <option value="Cayman Islands">Cayman Islands</option>
+                        <option value="Central African Republic">Central African Republic</option>
+                        <option value="Chad">Chad</option>
+                        <option value="Channel Islands">Channel Islands</option>
+                        <option value="Chile">Chile</option>
+                        <option value="China">China</option>
+                        <option value="Christmas Island">Christmas Island</option>
+                        <option value="Cocos Island">Cocos Island</option>
+                        <option value="Colombia">Colombia</option>
+                        <option value="Comoros">Comoros</option>
+                        <option value="Congo">Congo</option>
+                        <option value="Cook Islands">Cook Islands</option>
+                        <option value="Costa Rica">Costa Rica</option>
+                        <option value="Cote DIvoire">Cote DIvoire</option>
+                        <option value="Croatia">Croatia</option>
+                        <option value="Cuba">Cuba</option>
+                        <option value="Curaco">Curacao</option>
+                        <option value="Cyprus">Cyprus</option>
+                        <option value="Czech Republic">Czech Republic</option>
+                        <option value="Denmark">Denmark</option>
+                        <option value="Djibouti">Djibouti</option>
+                        <option value="Dominica">Dominica</option>
+                        <option value="Dominican Republic">Dominican Republic</option>
+                        <option value="East Timor">East Timor</option>
+                        <option value="Ecuador">Ecuador</option>
+                        <option value="Egypt">Egypt</option>
+                        <option value="El Salvador">El Salvador</option>
+                        <option value="Equatorial Guinea">Equatorial Guinea</option>
+                        <option value="Eritrea">Eritrea</option>
+                        <option value="Estonia">Estonia</option>
+                        <option value="Ethiopia">Ethiopia</option>
+                        <option value="Falkland Islands">Falkland Islands</option>
+                        <option value="Faroe Islands">Faroe Islands</option>
+                        <option value="Fiji">Fiji</option>
+                        <option value="Finland">Finland</option>
+                        <option value="France">France</option>
+                        <option value="French Guiana">French Guiana</option>
+                        <option value="French Polynesia">French Polynesia</option>
+                        <option value="French Southern Ter">French Southern Ter</option>
+                        <option value="Gabon">Gabon</option>
+                        <option value="Gambia">Gambia</option>
+                        <option value="Georgia">Georgia</option>
+                        <option value="Germany">Germany</option>
+                        <option value="Ghana">Ghana</option>
+                        <option value="Gibraltar">Gibraltar</option>
+                        <option value="Great Britain">Great Britain</option>
+                        <option value="Greenland">Greenland</option>
+                        <option value="Grenada">Grenada</option>
+                        <option value="Guadeloupe">Guadeloupe</option>
+                        <option value="Guam">Guam</option>
+                        <option value="Guatemala">Guatemala</option>
+                        <option value="Guinea">Guinea</option>
+                        <option value="Guyana">Guyana</option>
+                        <option value="Haiti">Haiti</option>
+                        <option value="Hawaii">Hawaii</option>
+                        <option value="Honduras">Honduras</option>
+                        <option value="Hong Kong">Hong Kong</option>
+                        <option value="Hungary">Hungary</option>
+                        <option value="Iceland">Iceland</option>
+                        <option value="Indonesia">Indonesia</option>
+                        <option value="India">India</option>
+                        <option value="Iran">Iran</option>
+                        <option value="Iraq">Iraq</option>
+                        <option value="Ireland">Ireland</option>
+                        <option value="Isle of Man">Isle of Man</option>
+                        <option value="Israel">Israel</option>
+                        <option value="Italy">Italy</option>
+                        <option value="Jamaica">Jamaica</option>
+                        <option value="Japan">Japan</option>
+                        <option value="Jordan">Jordan</option>
+                        <option value="Kazakhstan">Kazakhstan</option>
+                        <option value="Kenya">Kenya</option>
+                        <option value="Kiribati">Kiribati</option>
+                        <option value="Korea North">Korea North</option>
+                        <option value="Korea Sout">Korea South</option>
+                        <option value="Kuwait">Kuwait</option>
+                        <option value="Kyrgyzstan">Kyrgyzstan</option>
+                        <option value="Laos">Laos</option>
+                        <option value="Latvia">Latvia</option>
+                        <option value="Lebanon">Lebanon</option>
+                        <option value="Lesotho">Lesotho</option>
+                        <option value="Liberia">Liberia</option>
+                        <option value="Libya">Libya</option>
+                        <option value="Liechtenstein">Liechtenstein</option>
+                        <option value="Lithuania">Lithuania</option>
+                        <option value="Luxembourg">Luxembourg</option>
+                        <option value="Macau">Macau</option>
+                        <option value="Macedonia">Macedonia</option>
+                        <option value="Madagascar">Madagascar</option>
+                        <option value="Malaysia">Malaysia</option>
+                        <option value="Malawi">Malawi</option>
+                        <option value="Maldives">Maldives</option>
+                        <option value="Mali">Mali</option>
+                        <option value="Malta">Malta</option>
+                        <option value="Marshall Islands">Marshall Islands</option>
+                        <option value="Martinique">Martinique</option>
+                        <option value="Mauritania">Mauritania</option>
+                        <option value="Mauritius">Mauritius</option>
+                        <option value="Mayotte">Mayotte</option>
+                        <option value="Mexico">Mexico</option>
+                        <option value="Midway Islands">Midway Islands</option>
+                        <option value="Moldova">Moldova</option>
+                        <option value="Monaco">Monaco</option>
+                        <option value="Mongolia">Mongolia</option>
+                        <option value="Montserrat">Montserrat</option>
+                        <option value="Morocco">Morocco</option>
+                        <option value="Mozambique">Mozambique</option>
+                        <option value="Myanmar">Myanmar</option>
+                        <option value="Nambia">Nambia</option>
+                        <option value="Nauru">Nauru</option>
+                        <option value="Nepal">Nepal</option>
+                        <option value="Netherland Antilles">Netherland Antilles</option>
+                        <option value="Netherlands">Netherlands (Holland, Europe)</option>
+                        <option value="Nevis">Nevis</option>
+                        <option value="New Caledonia">New Caledonia</option>
+                        <option value="New Zealand">New Zealand</option>
+                        <option value="Nicaragua">Nicaragua</option>
+                        <option value="Niger">Niger</option>
+                        <option value="Nigeria">Nigeria</option>
+                        <option value="Niue">Niue</option>
+                        <option value="Norfolk Island">Norfolk Island</option>
+                        <option value="Norway">Norway</option>
+                        <option value="Oman">Oman</option>
+                        <option value="Pakistan">Pakistan</option>
+                        <option value="Palau Island">Palau Island</option>
+                        <option value="Palestine">Palestine</option>
+                        <option value="Panama">Panama</option>
+                        <option value="Papua New Guinea">Papua New Guinea</option>
+                        <option value="Paraguay">Paraguay</option>
+                        <option value="Peru">Peru</option>
+                        <option value="Phillipines">Philippines</option>
+                        <option value="Pitcairn Island">Pitcairn Island</option>
+                        <option value="Poland">Poland</option>
+                        <option value="Portugal">Portugal</option>
+                        <option value="Puerto Rico">Puerto Rico</option>
+                        <option value="Qatar">Qatar</option>
+                        <option value="Republic of Montenegro">Republic of Montenegro</option>
+                        <option value="Republic of Serbia">Republic of Serbia</option>
+                        <option value="Reunion">Reunion</option>
+                        <option value="Romania">Romania</option>
+                        <option value="Russia">Russia</option>
+                        <option value="Rwanda">Rwanda</option>
+                        <option value="St Barthelemy">St Barthelemy</option>
+                        <option value="St Eustatius">St Eustatius</option>
+                        <option value="St Helena">St Helena</option>
+                        <option value="St Kitts-Nevis">St Kitts-Nevis</option>
+                        <option value="St Lucia">St Lucia</option>
+                        <option value="St Maarten">St Maarten</option>
+                        <option value="St Pierre & Miquelon">St Pierre & Miquelon</option>
+                        <option value="St Vincent & Grenadines">St Vincent & Grenadines</option>
+                        <option value="Saipan">Saipan</option>
+                        <option value="Samoa">Samoa</option>
+                        <option value="Samoa American">Samoa American</option>
+                        <option value="San Marino">San Marino</option>
+                        <option value="Sao Tome & Principe">Sao Tome & Principe</option>
+                        <option value="Saudi Arabia">Saudi Arabia</option>
+                        <option value="Senegal">Senegal</option>
+                        <option value="Seychelles">Seychelles</option>
+                        <option value="Sierra Leone">Sierra Leone</option>
+                        <option value="Singapore">Singapore</option>
+                        <option value="Slovakia">Slovakia</option>
+                        <option value="Slovenia">Slovenia</option>
+                        <option value="Solomon Islands">Solomon Islands</option>
+                        <option value="Somalia">Somalia</option>
+                        <option value="South Africa">South Africa</option>
+                        <option value="Spain">Spain</option>
+                        <option value="Sri Lanka">Sri Lanka</option>
+                        <option value="Sudan">Sudan</option>
+                        <option value="Suriname">Suriname</option>
+                        <option value="Swaziland">Swaziland</option>
+                        <option value="Sweden">Sweden</option>
+                        <option value="Switzerland">Switzerland</option>
+                        <option value="Syria">Syria</option>
+                        <option value="Tahiti">Tahiti</option>
+                        <option value="Taiwan">Taiwan</option>
+                        <option value="Tajikistan">Tajikistan</option>
+                        <option value="Tanzania">Tanzania</option>
+                        <option value="Thailand">Thailand</option>
+                        <option value="Togo">Togo</option>
+                        <option value="Tokelau">Tokelau</option>
+                        <option value="Tonga">Tonga</option>
+                        <option value="Trinidad & Tobago">Trinidad & Tobago</option>
+                        <option value="Tunisia">Tunisia</option>
+                        <option value="Turkey">Turkey</option>
+                        <option value="Turkmenistan">Turkmenistan</option>
+                        <option value="Turks & Caicos Is">Turks & Caicos Is</option>
+                        <option value="Tuvalu">Tuvalu</option>
+                        <option value="Uganda">Uganda</option>
+                        <option value="United Kingdom">United Kingdom</option>
+                        <option value="Ukraine">Ukraine</option>
+                        <option value="United Arab Erimates">United Arab Emirates</option>
+                        <option value="United States of America">United States of America</option>
+                        <option value="Uraguay">Uruguay</option>
+                        <option value="Uzbekistan">Uzbekistan</option>
+                        <option value="Vanuatu">Vanuatu</option>
+                        <option value="Vatican City State">Vatican City State</option>
+                        <option value="Venezuela">Venezuela</option>
+                        <option value="Vietnam">Vietnam</option>
+                        <option value="Virgin Islands (Brit)">Virgin Islands (Brit)</option>
+                        <option value="Virgin Islands (USA)">Virgin Islands (USA)</option>
+                        <option value="Wake Island">Wake Island</option>
+                        <option value="Wallis & Futana Is">Wallis & Futana Is</option>
+                        <option value="Yemen">Yemen</option>
+                        <option value="Zaire">Zaire</option>
+                        <option value="Zambia">Zambia</option>
+                        <option value="Zimbabwe">Zimbabwe</option>
+                  </select><br><br>
+
+
+                <!-- City -->
+                <label for="city">*City</label>
+                <input type="text" id="city" pattern="[A-Za-z]{3,30}" placeholder="Patras" required><br>
+
+
+                <!-- Address -->
+                <label for="address">*Address (Street & Number)</label>
+                  <input type="text" id="address" pattern="{3,30}" placeholder="Digeni Akrita 7" required>
+
+                <!-- Addres Result -->
+                <div id="addr-message"></div><br>
+
+                <!-- Button to show map if the address is in Heraklion -->
+                <button type="button" id="showMap" style="display: none;">Show Map</button>
+                <!-- Button to hide map -->
+                <button type="button" id="hideMap" style="display: none;">Hide Map</button>
+
+                <!-- The Map -->
+                <div id="map" style="display: none;"></div><br>
+
+
+                <!-- Birthdate -->
+                <label for="birthdate">*Birthdate</label><br>
+                <input type="date" id="birthdate" value="1980-01-01" min="1920-01-01" max="2005-12-31" required><br>
+
+
+                <!-- Gender -->
+                <label for="gender">*Gender</label><br>
+                  <select id="gender"  required>
+                    <option value="" selected disabled hidden></option>
+                    <option value="1">Male</option>
+                    <option value="2" style="background-color: rgb(179, 175, 172);">Female</option>
+                    <option value="3" >Other</option> 
+                </select><br>
+
+
+                <!-- User Type -->
+                <label for="usertype">*User</label> <br>
+                <select id="usertype" required>
+                    <option value="" selected disabled hidden></option>
+                    <option value="1">Pet Owner</option>
+                    <option value="2">Pet Keeper</option>
+                </select><br>
+
+                        <!-- Extra Fields (Pet Keeper) -->
+                        <div id="extraPetKeeper" style="display: none;">
+
+                            <!-- Accommodation Area  -->
+                            <label for="accommodation">Accommodation Area</label><br>
+                                    <select id="accommodation" >
+                                        <option value="" selected disabled hidden></option>
+                                          <option value="1" >Indoor</option>
+                                            <option value="2" style="background-color: rgb(179, 175, 172);">Outdoor</option>
+                                                <option value="3" >Both</option>
+                                    </select><br><br>
+                                    
+                                    <div id="description">
+                                        
+                                        <label for="acomDescript">
+                                            Property Decription:
+                                        </label><br>
+                                        <input type="text" id="acomDescript" 
+                                            placeholder="Apartment building with a yard" 
+                                              style="text-transform: capitalize;" 
+                                                title="Please enter a description of your property!" 
+                                                  ><br><br>
+                                    </div>
+
+                                          <!-- Indoor & Both Accommodation Area -->
+                                          <div id="both_areas" name="both_areas" style="display: none;">
+
+                                            <label for="pet_selection">I can accommodate</label><br>
+
+                                                <select id="pet_selection" >
+                                                    <option value="" selected disabled hidden></option>
+                                                      <option value="1">Cat</option>
+                                                        <option value="2" style="background-color: rgb(179, 175, 172);">Dog</option>
+                                                          <option value="3">Both</option>
+                                                </select><br><br>
+
+                                                    <!-- What pet to accommodate -->
+                                                    <div id="onlycat" name="onlycat" style="display: none;">
+                                                        <label for="catprice">Price per night &euro; (cats)</label><br>
+                                                            <input type="number" id="catprice" name="catprice" min="0" max="15" value="8"><br><br>
+                                                    </div>
+
+                                                    <div id="onlydog" name="onlydog" style="display: none;">
+                                                        <label for="dogprice">Price per night &euro; (dogs)</label><br>
+                                                            <input type="number" id="dogprice" name="dogprice" min="0" max="20" value="10"><br><br>
+                                                    </div>
+
+                                                    <div id="bothpets" style="display: none;">
+                                                        <label for="catprice">Price per night &euro; (cats)</label><br>
+                                                            <input type="number" id="catprice" name="catprice" min="0" max="15" value="8"><br><br>
+                                                        <label for="dogprice">Price per night &euro; (dogs)</label><br>
+                                                            <input type="number" id="dogprice" name="dogprice" min="0" max="20" value="10"><br><br>
+                                                    </div>
+                                          </div>
+
+                                            <!-- Outdoor Accommodation Area  -->
+                                            <div id="outdoor_area" name="outdoor_area" style="display: none;">
+                                              <label for="dogAccommodation">I can accommodate</label><br>
+                                                  <select id="dogAccommodation" >
+                                                      <option value="1">Dog</option>   
+                                                  </select> <br><br>
+                                                <label for="dogprice">Price per night &euro; (dogs)</label><br>
+                                                          <input type="number" id="dogprice" name="dogprice" min="0" max="20" value="10"><br><br>
+                                            </div>
+
+                        </div>
+
+
+                <!-- Personal Webpage -->
+                <label for="personalpage">Social Media</label>
+                <input type="url" id="personalpage" placeholder="www.hy359.com" title="Please enter a valid url "><br>
+
+
+                <!-- Job -->
+                <label for="job">Job</label>
+                <input type="text" id="job" pattern="[A-Za-z ]{3,30}"  placeholder="Musician"><br>
+
+
+                <!-- Telephone -->
+                <label for="telephone">Mobile Phone</label>
+                <input type="tel" id="telephone"  pattern="[0-9]{10,14}" placeholder="6947207169"><br>
+
+
+                <!-- Accept Terms -->
+                <label> <input type="checkbox" id="terms" required> <a href="#"> *Terms & Conditions</a></label><br>
+
+
+                <!-- Clear-Fix -->
+                <div class="clearfix">
+                        <button type="reset" id="clear_attributes" name="clear_attributes" class="cancelbtn">Clear</button>
+                        <button type="submit"  id="submitButton"  name="submitButton" onclick="sign_Up()" class="signupbtn">Sign Up</button>
+                </div>
+
+            </div>
+
+        </form>
+
+    </div>
+    
+    
+    <!-- Log in Form -->
+    <div id="id02" class="modal">
+
+        <!-- (x) button -->
+        <span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
+
+        <!-- login form -->
+        <form  class="modal-content">
+
+            <div class="container">
+
+                <h2>Log in:</h2>
+                <p style="font-weight: bold; font-size: 17px; color: blue;">You can login as petowner or petkeeper</p><br>
+
+                <!-- Email -->
+                <label for="username">*username</label>
+                <input type="text" id="username_login"  placeholder="dogFriend" required>
+                
+                <!-- Password -->
+                <label for="password">*password</label>
+                <input type="password" id="password_login"  placeholder="pDs12!e#Pq" required>
+                
+                <!-- User Type -->
+                <label for="usertype2">*usertype</label> <br>
+                <select id="usertype2" required>
+                    <option value="" selected disabled hidden></option>
+                      <option value="1">Pet Owner</option>
+                        <option value="2">Pet Keeper</option>
+                </select><br>
+
+                <!-- password return result -->
+                <div id="login_return_result"></div><br>
+
+                <!-- button to show or hide passwords -->
+                <button type="button" id="showPass2"  style="width: 10vw; color: black;">Show Password</button><br><br>
+
+
+                <!-- clear fix class -->
+                <div class="clearfix">
+                    <!-- Button  resets attributes -->
+                    <button type="reset" id="clear_attributes_login" name="clear_attributes" class="cancelbtn">Clear</button>
+                    <!-- Button for login -->
+                    <button type="submit" id="loginButton" onclick="user_Login()" class="signupbtn" style="background-color: rgb(21, 138, 5);" >Login</button> 
+                </div>
+
+            </div>
+
+          </form>
+
+    </div>
+     
+    
+    <!-- Admin Login -->
+    <div id="id03" class="modal">
+
+        <!-- (x) button -->
+        <span onclick="document.getElementById('id03').style.display='none'" class="close" title="Close Modal">&times;</span>
+
+        <!-- login form -->
+        <form class="modal-content">
+
+            <div class="container">
+
+                <h2>Admin Log-in</h2><br>
+
+                <!-- Admin's username -->
+                <label for="username">*Username</label>
+                <input type="text" id="admin_username"  placeholder="admin123" required>
+                
+                <!-- Password -->
+                <label for="password">*Password</label>
+                <input type="password" id="admin_password"  placeholder="pDs12!e#Pq" required>
+
+                <!-- password return result -->
+                <div id="admin_pssw_result"></div><br>
+
+                <!-- button to show or hide passwords -->
+                <button type="button" id="showAdminPswd"  style="width: 10vw; color: black;">Show Password</button><br><br>
+
+
+                <!-- clear fix class -->
+                <div class="clearfix">
+                    <!-- Button  resets attributes -->
+                    <button type="reset" id="clear_attributes_login" name="clear_attributes" class="cancelbtn">Clear</button>
+                    <!-- Button for login -->
+                    <button id="admin_Button" onclick="check_admin()" class="signupbtn" style="background-color: rgb(21, 138, 5);" >Login</button> 
+                </div>
+
+            </div>
+
+          </form>
+
+    </div>
+    
+    
+    <!-- preview images -->
+    <div id='myContent'>
+        <h5>Click anywhere on the image to view the gallery of recent hostings !</h5>
+        <img id="myImage" style="height: 55vh; width: 40vw;" src="https://www.akc.org/wp-content/uploads/2015/06/Golden-Retriever-laying-down-playing-with-a-cat.jpeg" alt="myImage 1">
+    </div>
+    
+    
+    <!-- available keepers --> 
+    <div id='keepersTable'>
+        
+        <h5>Registered Keepers</h5>
+        <table class="table table-striped table-dark" id='petkeepersTable'>
+            <thead style='background-color:  darkseagreen; color: black;'>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">First</th>
+                <th scope="col">Last</th>
+                <th scope="col">email</th>
+                <th scope="col">personal page</th>
+              </tr>
+            </thead>
+            <tbody style="background-color: lightgray; color: black;">
+              <tr>
+                <th scope="row">1</th>
+                <td>Mark</td>
+                <td>Otto</td>
+                <td>mark@yahoo.com</td>
+                <td>www.markotto.com</td>
+              </tr>
+              <tr>
+                <th scope="row">2</th>
+                <td>Jacob</td>
+                <td>Thornton</td>
+                <td>jtred23@gmail.com</td>
+                <td>the new avenue</td>
+              </tr>
+              <tr>
+                <th scope="row">3</th>
+                <td>Larry</td>
+                <td>Bird</td>
+                <td>larry7bd@gmail.com</td>
+                <td>instagram.com/larry7</td>
+              </tr>
+            </tbody>
+        </table>
+ 
+    </div>
+    
+    
+    <!-- other links -->
+    <div id='otherLinks'>
+        <h4>Other Links</h4><br>
+        <a href="https://www.i-pet.gr/" target="_blank" style="font-size: large;">i-pet.gr</a><br>
+        <iframe name="contentFrame" id="frame1" src="https://www.i-pet.gr/" frameborder="0"></iframe><br>
+        
+        <a href="https://allaboutpets.gr/katoikidia-zoa-gia-mesa-sto-spiti/" target="_blank" style="font-size: large;">allAboutPets</a><br>
+        <iframe name="contentFrame2" id="frame2" src="https://allaboutpets.gr/katoikidia-zoa-gia-mesa-sto-spiti/" frameborder="0"></iframe>
+
+    </div>
+
+    
+
+  </body>
+
+</html>
