@@ -1,1 +1,0 @@
-Runs in google  chrome with disabled  corses
